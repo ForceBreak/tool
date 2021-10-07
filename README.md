@@ -1,5 +1,5 @@
 # RadiTube Tool Frontend
-This repo features the code for the new RadiTube Tool frontend.
+This repo features the code for the new RadiTube Tool frontend. Development roadmap can be found [here](https://github.com/raditube/tool/projects/1).
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/3f77774e-0476-4bbb-9fac-b1acc95e8e8c/deploy-status)](https://app.netlify.com/sites/admiring-kirch-37f230/deploys)
 
