@@ -1,4 +1,5 @@
-# tool-frontend
+# RadiTube Tool Frontend
+This frontend requires an .env with reference to the Serverless endpoints and auth_config.json for Auth0 authentication.
 
 ## Project setup
 ```
