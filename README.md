@@ -33,7 +33,7 @@ npm run serve
 Deployment is done through Netlify. Env are stored in the netlify environment settings. In order to not expose ```auth_config.json```, the values for Auth0 are also stored in the Netlify enviroment settings. The ```auth_config.json``` is generated through ```make_auth_config.sh```.
 
 ```
-npm run build
+chmod a+x ./make_auth_config.sh && ./make_auth_config.sh && vue-cli-service build
 ```
 
 ### Lints and fixes files
