@@ -28,7 +28,6 @@ export default new Vuex.Store({
   actions: {
     async fetchLines (context, payload) {
       const { data } = await axios.get(`${process.env.VUE_APP_API_DOMAIN}/search/and`, {
-        // const { data } = await axios.get("https://y1yd1oyc37.execute-api.us-east-1.amazonaws.com/search/and", {
           headers: {
           Authorization: `Bearer ${payload.token}`    // send the access token through the 'Authorization' header
         }
