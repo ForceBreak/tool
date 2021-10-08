@@ -56,11 +56,7 @@ export default {
     async callSearch() {
       // this.loading = true;
 
-      const payload = {
-        token: await this.$auth.getTokenSilently()
-      }
-
-      this.$store.dispatch('fetchLines', payload)
+      this.$store.dispatch('fetchLines')
         // .then(() => this.loading = false)
     },
     openVideo(id, timestamp) {

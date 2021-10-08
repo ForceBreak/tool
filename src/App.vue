@@ -6,6 +6,8 @@
 
     </div>
     <div v-if="$auth.isAuthenticated">
+      <Onboarding v-if="showOnboarding" />
+
       <div id="nav">
         <router-link to="/">Home</router-link> |
         <router-link to="/search">Search</router-link> | 
@@ -17,8 +19,16 @@
 </template>
 
 <script>
+import Onboarding from '@/components/Onboarding';
+
 export default {
   name: 'app',
+  components: {
+    Onboarding
+  },
+  computed: {
+    showOnboarding () { return this.$store.state.user.onboarding }
+  },
   methods: {
     login() {
       this.$auth.loginWithRedirect();

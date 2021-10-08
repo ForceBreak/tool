@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <div class="container">
+    <h2>Onboarding</h2>
   </div>
 </template>
 
@@ -9,6 +10,6 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 
 </style>

@@ -51,11 +51,13 @@ export default new Vuex.Store({
         console.log(res);
       })
     },
-    async fetchLines (context, payload) {
-      context.commit('setLoading', true)
+    async fetchLines (context) {
+      context.commit('setLoading', true);
+      await context.dispatch('authorizeAuth0');
+
       const { data } = await axios.get(`${process.env.VUE_APP_API_DOMAIN}/search/and`, {
           headers: {
-          Authorization: `Bearer ${payload.token}`    // send the access token through the 'Authorization' header
+          Authorization: `Bearer ${context.state.auth}`
         }
       });
 

@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@auth0/auth0-spa-js": "^1.18.0",
+    "@braid/vue-formulate": "^2.5.2",
     "axios": "^0.22.0",
     "core-js": "^3.6.5",
     "sass": "^1.42.1",
