@@ -1,7 +1,6 @@
 <template>
   <div class="home">
 
-
     <!-- Check that the SDK client is not currently loading before accessing is methods -->
     <div v-if="!$auth.loading">
       <!-- show login when not authenticated -->
@@ -9,7 +8,7 @@
       <!-- show logout when authenticated -->
       <button v-if="$auth.isAuthenticated" @click="logout">Log out</button>
       <div v-if="$auth.isAuthenticated" @click="metadata">
-
+        
         {{$auth.user}}
       </div>
 
@@ -23,6 +22,11 @@ export default {
   data: () => {
     return {
       token: ""
+    }
+  },
+  mounted: function() {
+    if (this.$auth.isAuthenticated) {
+      this.$store.dispatch('storeUserMetadata');
     }
   },
   methods: {

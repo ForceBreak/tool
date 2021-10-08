@@ -6,6 +6,11 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    auth: "",
+    user: {
+      onboarding: true,
+      meta: {}
+    },
     search: {
       pictureInPicture: {
         activeVideo: "",
@@ -16,9 +21,18 @@ export default new Vuex.Store({
     }
   },
   mutations: {
+    setAuth (state, payload) {
+      state.auth = payload;
+    },
+    setOnboarding (state, payload) {
+      state.user.onboarding = payload;
+    },
+    storeMetadata (state, payload) {
+      state.user.meta = payload;
+    },
     setLines (state, payload) {
       payload.hits.hits.forEach((line) => {
-          state.search.lines.push(line._source);
+        state.search.lines.push(line._source);
       })
     },
     setVideo (state, payload) {
@@ -30,6 +44,13 @@ export default new Vuex.Store({
     }
   },
   actions: {
+    async authorizeAuth0 (context) {
+      await this._vm.$auth.getTokenSilently()
+      .then((res) => {
+        context.commit('setAuth', res);
+        console.log(res);
+      })
+    },
     async fetchLines (context, payload) {
       context.commit('setLoading', true)
       const { data } = await axios.get(`${process.env.VUE_APP_API_DOMAIN}/search/and`, {
@@ -44,6 +65,18 @@ export default new Vuex.Store({
     },
     activateVideo (context, payload) {
       context.commit('setVideo', payload)
+    },
+    async storeUserMetadata (context) {
+      await context.dispatch('authorizeAuth0');
+
+      this._vm.$auth.getIdTokenClaims()
+      .then((res) => {
+        if (res['https://raditube.com/logins'] <= 1) { // or onboarding is done
+          context.commit('setOnboarding', true)
+        }
+
+        context.commit('storeMetadata', res);
+      })
     }
   },
   modules: {
