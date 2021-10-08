@@ -54,10 +54,7 @@ export default {
   },
   methods: {
     async callSearch() {
-      // this.loading = true;
-
       this.$store.dispatch('fetchLines')
-        // .then(() => this.loading = false)
     },
     openVideo(id, timestamp) {
       const payload = {
@@ -66,7 +63,9 @@ export default {
       }
 
       this.$store.dispatch('activateVideo', payload)
-        .then(() => this.video = true);
+        .then(() => {
+          this.video = true
+        });
     },
     onScroll(el) {
       this.video = false;
