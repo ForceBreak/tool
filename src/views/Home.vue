@@ -31,15 +31,11 @@ export default {
       this.$auth.loginWithRedirect();
     },
     metadata() {
-      console.log(this.$auth);
-
-      this.$auth.getTokenSilently()
+      this.$auth.getIdTokenClaims()
       .then((res) => {
+        console.log('claims');
         console.log(res)
       })
-
-      this.$auth.getIdTokenClaims()
-      .then((res) => console.log(res))
     },
     // Log the user out
     logout() {
