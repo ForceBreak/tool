@@ -8,7 +8,7 @@
     <div v-if="$auth.isAuthenticated">
       <div id="nav">
         <router-link to="/">Home</router-link> |
-        <router-link to="/search">Search</router-link>
+        <router-link to="/search">Search</router-link> | 
         <router-link to="/discovery">Discover</router-link>
       </div>
       <router-view />

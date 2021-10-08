@@ -1,8 +1,6 @@
 <template>
   <div>
-    <div @click="callSearch">
-        call search
-    </div>
+    <Searchbar />
     <div class="results">
       <div v-if="loading" class="loading">Loading</div>
 
@@ -13,6 +11,7 @@
         :min-item-size="54"
         class="scroller"
         key-field="line_id"
+        @scroll.native="onScroll"
       >
         <template v-slot="{ item, index, active }">
           <DynamicScrollerItem
@@ -34,15 +33,15 @@
 
 <script>
 import Video from '@/components/search/Video'
+import Searchbar from '@/components/search/Searchbar'
 
 export default {
   name: 'Search',
   components: {
-    Video
+    Video, Searchbar
   },
   data: () => {
     return {
-      loading: false,
       video: false
     }
   },
@@ -50,20 +49,19 @@ export default {
     items: Array,
   },
   computed: {
-    lines () {
-      return this.$store.state.search.lines
-    }
+    lines () { return this.$store.state.search.lines },
+    loading () { return this.$store.state.search.loading }
   },
   methods: {
     async callSearch() {
-      this.loading = true;
+      // this.loading = true;
 
       const payload = {
         token: await this.$auth.getTokenSilently()
       }
 
       this.$store.dispatch('fetchLines', payload)
-        .then(() => this.loading = false)
+        // .then(() => this.loading = false)
     },
     openVideo(id, timestamp) {
       const payload = {
@@ -73,7 +71,14 @@ export default {
 
       this.$store.dispatch('activateVideo', payload)
         .then(() => this.video = true);
-      // this.video = true;
+    },
+    onScroll(el) {
+      this.video = false;
+
+      if ( el.path[0].offsetHeight + el.path[0].scrollTop >= el.path[0].scrollHeight ) {
+        console.log('log in additional parameters and stuff')
+        this.callSearch();
+      }
     }
   }
 }
