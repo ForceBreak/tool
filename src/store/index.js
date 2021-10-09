@@ -68,6 +68,10 @@ export default new Vuex.Store({
     activateVideo (context, payload) {
       context.commit('setVideo', payload)
     },
+    async track (context, payload) {
+      const email = context.state.user.meta.email;
+      await axios.post(`${process.env.VUE_APP_API_DOMAIN}/trackpage/${payload.name}/e/${email}`);
+    },
     async storeUserMetadata (context) {
       await context.dispatch('authorizeAuth0');
 

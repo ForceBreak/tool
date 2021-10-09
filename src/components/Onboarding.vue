@@ -19,7 +19,7 @@
       
         <FormulateInput
           type="textarea"
-          v-model="different_usecase"
+          v-model="alt_research_area"
           label="I'd like to use RadiTube for:"
           validation="max:50,length"
           :help="`Keep it under 50 characters. ${50 - different_usecase.length} left.`"
@@ -44,11 +44,15 @@
         type="submit"
         label="Start using RadiTube"
       />
+
+      I'll answer these questions next time.
     </FormulateForm>
   </div>
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   name: 'Onboarding',
   data () {
@@ -56,19 +60,43 @@ export default {
       onboardingForm: {},
       research_field: '',
       research_place: '',
-      different_usecase: '',
+      alt_research_area: '',
       email_premission: false
     }
   },
   methods: {
     submitOnboarding() {
-      console.log(this.research_field);
-      console.log(this.research_place);
+
+      this.$auth.getTokenSilently()
+      .then((res) => {
+        console.log(res);
+
+        const { data } = axios.post(`${process.env.VUE_APP_API_DOMAIN}/onboarding`, {
+          research_area: this.research_field,
+          workplace: this.research_place,
+          alt_research_area: this.alt_research_area,
+          email_premission: this.email_premission
+        }, {
+          headers: {
+            Authorization: `Bearer ${res}`
+          }
+        });
+
+        console.log(JSON.parse(data))
+      })
+
+
+      // axios post to endpoint
+        // set onboarding to false
     }
   }
 }
 </script>
 
 <style scoped>
+.container {
+  width: 100%;
+  height: 100%;
+}
 
 </style>
