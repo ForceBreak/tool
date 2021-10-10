@@ -3,18 +3,17 @@
     <h2>Almost there!</h2>
     <p>Would you mind answering these two questions?</p>
     <FormulateForm 
-      v-model="onboardingForm"
       @submit="submitOnboarding()">
 
       <FormulateInput
-        v-model="research_field"
+        v-model="research_area"
         :options="{disinfo: 'Disinformation Research', journalism: 'Journalism', marketing: 'Marketing Research', influencer: 'Influencer Research', else: 'Something Else'}"
         type="select"
         placeholder="Select an option"
         label="For what will you be using RadiTube?"
       />
 
-      <div v-if="research_field === 'else'">
+      <div v-if="research_area === 'else'">
         <p>We are still discovering all the potential use cases for RadiTube? We'd be super curious to hear what you'd like to use RadiTube for:</p>
       
         <FormulateInput
@@ -22,13 +21,13 @@
           v-model="alt_research_area"
           label="I'd like to use RadiTube for:"
           validation="max:50,length"
-          :help="`Keep it under 50 characters. ${50 - different_usecase.length} left.`"
+          :help="`Keep it under 50 characters. ${50 - alt_research_area.length} left.`"
         />
       </div>
 
       <FormulateInput
         v-model="research_place"
-        :options="{first: 'Academia', second: 'Company', third: 'Governmental', fourth: 'NGO', fourth: 'Freelancer', student: 'Student', else: 'Something Else'}"
+        :options="{first: 'Academia', second: 'Company', third: 'Governmental', fourth: 'NGO', fourth: 'Freelancer', student: 'Student'}"
         type="select"
         placeholder="Select an option"
         label="Where do you work?"
@@ -57,8 +56,7 @@ export default {
   name: 'Onboarding',
   data () {
     return {
-      onboardingForm: {},
-      research_field: '',
+      research_area: '',
       research_place: '',
       alt_research_area: '',
       email_premission: false
@@ -72,7 +70,7 @@ export default {
         console.log(res);
 
         const { data } = axios.post(`${process.env.VUE_APP_API_DOMAIN}/onboarding`, {
-          research_area: this.research_field,
+          research_area: this.research_area,
           workplace: this.research_place,
           alt_research_area: this.alt_research_area,
           email_premission: this.email_premission

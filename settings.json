@@ -1,0 +1,11 @@
+{
+  "research_areas": {
+    "disinfo": "Disinformation Research",
+    "journalism": "Journalism",
+    "propaganda": "Propaganda",
+    "osint": "OSINT",
+    "marketing": "Marketing",
+    "influencer": "Influencer Research",
+    "else": "Something Else"
+  }    
+}
