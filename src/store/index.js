@@ -75,6 +75,7 @@ export default new Vuex.Store({
           from: context.state.search.searchState.from,
           size: context.state.search.searchState.size,
           online: context.state.search.searchState.online, 
+          specific_channel: "",
           sort: "date",
           sort_order: "asc",
           date_gte: "",
