@@ -71,8 +71,10 @@ export default {
       this.video = false;
 
       if ( el.path[0].offsetHeight + el.path[0].scrollTop >= el.path[0].scrollHeight ) {
-        console.log('log in additional parameters and stuff')
-        this.callSearch();
+        // measure amount of searches?
+        this.$store.dispatch('fetchLines', {
+          followup: true
+        })
       }
     }
   }

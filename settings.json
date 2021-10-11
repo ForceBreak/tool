@@ -1,11 +1,19 @@
 {
-  "research_areas": {
+  "research_area": {
     "disinfo": "Disinformation Research",
     "journalism": "Journalism",
-    "propaganda": "Propaganda",
+    "propaganda": "Propaganda Research",
     "osint": "OSINT",
     "marketing": "Marketing",
     "influencer": "Influencer Research",
     "else": "Something Else"
-  }    
+  },
+  "workplace": {
+    "academia": "Academia",
+    "company": "Company",
+    "government": "Government",
+    "ngo": "NGO",
+    "freelance": "Freelance",
+    "student": "Student"
+  }  
 }
