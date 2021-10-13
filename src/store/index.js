@@ -4,6 +4,9 @@ import axios from 'axios';
 
 Vue.use(Vuex)
 
+// splitting up the store
+// https://vuex.vuejs.org/guide/modules.html#module-local-state
+
 export default new Vuex.Store({
   state: {
     auth: "",
@@ -54,7 +57,7 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    async authorizeAuth0(context) {
+    async authorizeAuth0(context) { // Put this in local storage
       await this._vm.$auth.getTokenSilently()
         .then((res) => {
           context.commit('setAuth', res);
@@ -95,6 +98,12 @@ export default new Vuex.Store({
     activateVideo(context, payload) {
       context.commit('setVideo', payload)
     },
+    loggedIn(context, payload) {
+      context.dispatch('storeUserMetadata');
+
+      console.log(context);
+      console.log(payload);
+    },
     track(context, payload) {
       const email = context.state.user.meta.email;
       axios.get(`${process.env.VUE_APP_API_DOMAIN}/trackpage/${btoa(payload.name)}/e/${btoa(email)}`);
@@ -104,6 +113,7 @@ export default new Vuex.Store({
 
       this._vm.$auth.getIdTokenClaims()
         .then((res) => {
+          console.log(res);
           if (res['https://raditube.com/logins'] <= 1) { // or onboarding is done
             context.commit('setOnboarding', true)
           }

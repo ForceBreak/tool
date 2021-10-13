@@ -7,7 +7,6 @@
     </div>
     <div v-if="$auth.isAuthenticated">
       <Onboarding v-if="showOnboarding" />
-      <button @click="logout">Log out</button>
 
       <FeatureNav />
 
@@ -26,11 +25,12 @@ export default {
     FeatureNav, Onboarding
   },
   computed: {
-    showOnboarding () { return this.$store.state.user.onboarding }
+    showOnboarding () { return this.$store.state.user.meta.onboarding_completed }
   },
   methods: {
     login() {
       this.$auth.loginWithRedirect();
+      console.log('test when does this show?')
     },
     logout() {
       this.$auth.logout();
@@ -42,6 +42,7 @@ export default {
 
 <style lang="scss">
 @import '~@/styles/fonts.scss';
+@import '~@/styles/colors.scss';
 @import '~normalize.css';
 @import '../node_modules/@braid/vue-formulate/themes/snow/snow.scss';
 

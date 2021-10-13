@@ -24,11 +24,6 @@ export default {
       token: ""
     }
   },
-  mounted: function() {
-    if (this.$auth.isAuthenticated) {
-      this.$store.dispatch('storeUserMetadata');
-    }
-  },
   methods: {
     // Log the user in
     login() {

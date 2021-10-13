@@ -1,12 +1,15 @@
 <template>
-  <div>
+  <div id="searchbar">
     <FormulateInput
       type="text"
       label="Fill in your search query"
       validation="required"
+      v-model="searchTerm"
       validation-name="Search query"
       placeholder="e.g. Vaccines"
     />
+
+    <button @click="callInitialSearch">Search</button>
 
     <FormulateInput
       type="checkbox"
@@ -16,10 +19,6 @@
     />
 
 
-    <div @click="callInitialSearch">
-
-    Click here to search
-  </div>
   </div>
 </template>
 
@@ -28,14 +27,13 @@ export default {
   name: 'Searchbar',
   data () {
     return {
-      community_buckets: {}
+      searchTerm: "",
+      community_buckets: {},
 
     }
   },
   methods: {
     async callInitialSearch() {
-
-
       this.$store.dispatch('fetchLines', {})
         // .then(() => this.loading = false)
     },
@@ -44,6 +42,11 @@ export default {
 }
 </script>
 
-<style>
-
+<style lang="scss" scoped>
+#searchbar {
+  width: 100vw;
+  height: 3rem;
+  display: flex;
+  border-bottom: 1px solid $border-line;
+}
 </style>

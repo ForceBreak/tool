@@ -1,4 +1,5 @@
 import Vue from "vue";
+import store from '../store/index.js'
 import createAuth0Client from "@auth0/auth0-spa-js";
 
 /** Define a default action to perform after authentication */
@@ -54,6 +55,7 @@ export const useAuth0 = ({
       /** Handles the callback when logging in using a redirect */
       async handleRedirectCallback() {
         this.loading = true;
+
         try {
           await this.auth0Client.handleRedirectCallback();
           this.user = await this.auth0Client.getUser();
@@ -93,7 +95,7 @@ export const useAuth0 = ({
       this.auth0Client = await createAuth0Client({
         ...options,
         client_id: options.clientId,
-        scope: 'openid profile email user_metadata',
+        scope: 'openid profile email',
         redirect_uri: redirectUri
       });
 
@@ -105,6 +107,7 @@ export const useAuth0 = ({
         ) {
           // handle the redirect and retrieve tokens
           const { appState } = await this.auth0Client.handleRedirectCallback();
+          console.log(Vue)
 
           this.error = null;
 
@@ -118,6 +121,7 @@ export const useAuth0 = ({
         // Initialize our internal authentication state
         this.isAuthenticated = await this.auth0Client.isAuthenticated();
         this.user = await this.auth0Client.getUser();
+        store.dispatch('loggedIn', this.user);
         this.loading = false;
       }
     }

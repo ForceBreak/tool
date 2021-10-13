@@ -87,6 +87,8 @@ export default {
 }
 
 .text {
-  height: 50px;
+  font-family: 'IBM Plex Mono';
+  font-size: 1rem;
+  line-height: 4rem;
 }
 </style>
