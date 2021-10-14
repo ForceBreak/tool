@@ -1,0 +1,46 @@
+{
+  "private": [
+    {
+      "bucket_id": "kb1l1xJ",
+      "bucket_name": "OSINT Africa",
+      "channels": 30
+    },
+    {
+      "bucket_id": "kb1l1xJ",
+      "bucket_name": "Nairobi Journalists",
+      "channels": 10
+    }
+  ],
+  "teams": [
+    {
+      "bucket_id": "kb1l1xJ",
+      "bucket_name": "OSINT Africa",
+      "team": "Oxford",
+      "channels": 30
+    },
+    {
+      "bucket_id": "kb1l1xJ",
+      "bucket_name": "Nairobi Journalists",
+      "team": "Oxford",
+      "channels": 10
+    }
+  ],
+  "public": [
+    {
+      "bucket_id": "kb1l1xJ",
+      "bucket_name": "QAnon",
+      "bucket_summary": "A list of 43 channels which we initially gathered in June 2020.",
+      "maintainer": "RadiTube",
+      "tags": ["conspiracy", "USA"],
+      "channels": 30
+    },
+    {
+      "bucket_id": "kb1l1xJ",
+      "bucket_name": "Desinformação Brasileira",
+      "bucket_summary": "103 Brasilian channels that have spread disinformation in the recent 25 days",
+      "maintainer": "Projeto Comprova",
+      "tags": ["brasil", "bolsonaro"],
+      "channels": 120
+    },
+  ]
+}
