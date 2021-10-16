@@ -19,12 +19,18 @@ export default new Vuex.Store({
         term: "trump",
         online: true,
         buckets: ['qanon'],
+        channels: ['UCyXC1D6ByaREoqSIqcxIT0Q', 'UCyXC1D6ByaREoqSIqcxIT0Q'],
+        channels_filter: false,
+        filters: ['show_online', 'show_removed', 'show_deleted_by_yt', 'show_deleted_by_owner'],
+        date: [242354235234, 5235423532],
         from: 0,
         size: 20
       },
       pictureInPicture: {
         activeVideo: "",
-        timestamp: 0
+        timestamp: 0,
+        x: 100,
+        y: 100
       },
       loading: false,
       lines: []

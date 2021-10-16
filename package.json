@@ -10,10 +10,13 @@
   "dependencies": {
     "@auth0/auth0-spa-js": "^1.18.0",
     "@braid/vue-formulate": "^2.5.2",
+    "autoprefixer": "^9.8.8",
     "axios": "^0.22.0",
     "core-js": "^3.6.5",
     "normalize.css": "^8.0.1",
+    "postcss": "^7.0.39",
     "sass": "^1.42.1",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.17",
     "vue": "^2.6.11",
     "vue-router": "^3.2.0",
     "vue-virtual-scroller": "^1.0.10",

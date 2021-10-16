@@ -4,6 +4,8 @@
       <img src="../assets/logo.svg" />
     </div>
 
+    <header>
+    <nav>
     <ul>
     <router-link to="/"><li>Dashboard</li></router-link>
     <li><router-link to="/discovery">Discovery</router-link></li>
@@ -11,6 +13,8 @@
     <li><router-link to="/">Track</router-link></li>
     <li><router-link to="/">Trends</router-link></li>
     </ul>
+    </nav>
+    </header>
   </div>
 </template>
 
