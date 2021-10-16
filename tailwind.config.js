@@ -5,7 +5,7 @@ module.exports = {
   darkMode: false,
   theme: {
     fontFamily: {
-      sans: ['Illisarniq', 'sans-serif'],
+      sans: ['Ilisarniq', 'sans-serif'],
       mono: ['IBM Plex Mono', 'mono'],
     },
     extend: {

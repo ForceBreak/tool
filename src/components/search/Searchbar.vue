@@ -3,6 +3,7 @@
     <div id="search" class="flex pr-4">
       <FormulateInput
         type="text"
+        class="border-none"
         validation="required"
         v-model="searchTerm"
         validation-name="Search query"
@@ -15,6 +16,11 @@
     </div>
 
     <div id="filters" class="border-l pr-4 py-2 flex">
+
+        <custom-button
+          ButtonName="Buckets"
+          Selected=5
+        />
 
       <custom-button
         ButtonName="Channels"

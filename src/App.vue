@@ -30,7 +30,6 @@ export default {
   methods: {
     login() {
       this.$auth.loginWithRedirect();
-      console.log('test when does this show?')
     },
     logout() {
       this.$auth.logout();
@@ -44,7 +43,7 @@ export default {
 @import '~@/styles/fonts.scss';
 @import '~@/styles/colors.scss';
 @import '~normalize.css';
-@import '../node_modules/@braid/vue-formulate/themes/snow/snow.scss';
+// @import '../node_modules/@braid/vue-formulate/themes/snow/snow.scss';
 
 * {
   box-sizing: border-box;
