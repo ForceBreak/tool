@@ -7,11 +7,11 @@
     <header>
     <nav>
     <ul>
-    <router-link to="/"><li>Dashboard</li></router-link>
-    <li><router-link to="/discovery">Discovery</router-link></li>
-    <li><router-link to="/search">Search</router-link></li>
-    <li><router-link to="/">Track</router-link></li>
-    <li><router-link to="/">Trends</router-link></li>
+    <router-link to="/"><li class="leading-12 px-2">Dashboard</li></router-link>
+    <router-link to="/discovery"><li class="leading-12 px-2">Discovery</li></router-link>
+    <li class="leading-12 px-2"><router-link to="/search">Search</router-link></li>
+    <li class="leading-12 px-2"><router-link to="/">Track</router-link></li>
+    <li class="leading-12 px-2"><router-link to="/">Trends</router-link></li>
     </ul>
     </nav>
     </header>
@@ -45,7 +45,6 @@ export default {
 
     li {
       display: inline-block;
-      line-height: 3rem;
       font-family: 'Ilisarniq';
       font-weight: 'normal';
       text-decoration: none;
@@ -55,13 +54,9 @@ export default {
 
 
 #header {
-
   a {
     color: #2c3e50;
     text-decoration: none;
-    margin: 0 1rem;
-          height: 3rem;
-      display: inline-block;
 
     &.router-link-exact-active {
       color: #42b983;

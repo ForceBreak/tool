@@ -1,30 +1,68 @@
 <template>
-  <div id="searchbar">
-    <FormulateInput
-      type="text"
-      label="Fill in your search query"
-      validation="required"
-      v-model="searchTerm"
-      validation-name="Search query"
-      placeholder="e.g. Vaccines"
-    />
+  <div id="searchbar" class="h-12	w-full border-b">
+    <div id="search" class="flex pr-4">
+      <FormulateInput
+        type="text"
+        validation="required"
+        v-model="searchTerm"
+        validation-name="Search query"
+        placeholder="e.g. Vaccines"
+      />
 
-    <button @click="callInitialSearch">Search</button>
+      <button class="text-sm ml-4 my-2 px-4 font-semibold border border-purple-200 text-purple-600 rounded-2xl" @click="callInitialSearch">
+        Search
+      </button>
+    </div>
 
-    <FormulateInput
+    <div id="filters" class="border-l pr-4 py-2 flex">
+
+      <custom-button
+        ButtonName="Channels"
+        ButtonIcon="channels"
+      />
+
+      <custom-button
+        ButtonName="Dates"
+        ButtonIcon="dates"
+      />
+
+      <custom-button
+        ButtonName="Removed"
+        ButtonIcon="removed"
+      />
+
+    <!-- <FormulateInput
       type="checkbox"
       label="Pick community buckets"
       v-model="community_buckets"
       :options="{qanon: 'QAnon', disinfo: 'Disinformation', politics: 'Politics'}"
-    />
+    /> -->
+    </div>
+
+    <div id="sort" class="border-l pr-4 py-2">
+      <custom-button
+        ButtonName="Sort"
+        ButtonIcon="sort"
+      />
+
+    </div>
+
+    <div id="options" class="self-center justify-self-end ml-auto mr-4">
+      Options
+    </div>
 
 
   </div>
 </template>
 
 <script>
+import CustomButton from '../CustomButton.vue'
+
 export default {
   name: 'Searchbar',
+  components: {
+    CustomButton
+  },
   data () {
     return {
       searchTerm: "",
@@ -42,11 +80,8 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 #searchbar {
-  width: 100vw;
-  height: 3rem;
   display: flex;
-  border-bottom: 1px solid $border-line;
 }
 </style>
