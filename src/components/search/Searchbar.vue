@@ -1,5 +1,7 @@
 <template>
   <div id="searchbar" class="h-12	w-full border-b">
+    <div id="modal-bg" v-if="overlay" @click="closeModals" class="fixed top-0 z-20 w-screen	h-screen bg-black	bg-opacity-25"></div>
+
     <div id="search" class="flex pr-4">
       <FormulateInput
         type="text"
@@ -17,20 +19,26 @@
 
     <div id="filters" class="border-l pr-4 py-2 flex">
 
+      <custom-button
+        ButtonName="Buckets"
+        Selected=5
+      />
+
+      <div>
         <custom-button
-          ButtonName="Buckets"
-          Selected=5
+          ButtonName="Channels"
+          ButtonIcon="channels"
+          @click.native="modals.channels = !modals.channels"
         />
+          <Channels v-if="modals.channels" />
+      </div>
 
-      <custom-button
-        ButtonName="Channels"
-        ButtonIcon="channels"
-      />
-
-      <custom-button
-        ButtonName="Dates"
-        ButtonIcon="dates"
-      />
+      <div>
+        <custom-button
+          ButtonName="Dates"
+          ButtonIcon="dates"
+        />
+      </div>
 
       <custom-button
         ButtonName="Removed"
@@ -63,16 +71,38 @@
 
 <script>
 import CustomButton from '../CustomButton.vue'
+import Channels from './drop-down/Channels.vue'
 
 export default {
   name: 'Searchbar',
   components: {
-    CustomButton
+    CustomButton, Channels
+  },
+  watch: {
+    'modals': {
+       handler: function () {
+         if (this._data.modals.channels) {
+           this._data.overlay = true;
+         }
+
+        // console.log(newer)
+      },
+      deep: true
+    }
   },
   data () {
     return {
       searchTerm: "",
       community_buckets: {},
+      overlay: false,
+      modals: {
+        buckets: false,
+        channels: false,
+        dates: false,
+        removed: false,
+        sort: false,
+        export: false
+      }
 
     }
   },
@@ -81,6 +111,12 @@ export default {
       this.$store.dispatch('fetchLines', {})
         // .then(() => this.loading = false)
     },
+    closeModals() {
+      this.overlay = false;
+      Object.keys(this.modals).forEach(v => this.modals[v] = false)
+
+      // loop over all
+    }
   }
 
 }
