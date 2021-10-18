@@ -10,7 +10,9 @@ module.exports = {
     },
     extend: {
       lineHeight: {
-        '12': '3rem'
+        '11': '2.75rem',
+        '12': '3rem',
+        '16': '4rem'
       }
     }
   },

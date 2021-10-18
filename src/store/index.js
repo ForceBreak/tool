@@ -21,7 +21,8 @@ export default new Vuex.Store({
         buckets: ['qanon'],
         channels: ['UCyXC1D6ByaREoqSIqcxIT0Q', 'UCyXC1D6ByaREoqSIqcxIT0Q'],
         channels_filter: false,
-        filters: ['show_online', 'show_removed', 'show_deleted_by_yt', 'show_deleted_by_owner'],
+        filters: ['show_online', 'show_deleted_by_yt', 'show_deleted_by_owner'],
+        sort: "",
         date: [242354235234, 5235423532],
         from: 0,
         size: 20

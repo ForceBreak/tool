@@ -21,7 +21,8 @@
             key-field="line_id"
           >
 
-          <div class="text" @click="openVideo(item.video_id, item.start)">{{ item.line }}</div>
+          <SingleLine :id="item.video_id" :start="item.start" :linetext="item.line" />
+          <!-- <div class="text" @click="openVideo(item.video_id, item.start)">{{ item.line }}</div> -->
           </DynamicScrollerItem>
         </template>
       </DynamicScroller>
@@ -34,11 +35,12 @@
 <script>
 import Video from '@/components/search/Video'
 import Searchbar from '@/components/search/Searchbar'
+import SingleLine from '@/components/search/SingleLine'
 
 export default {
   name: 'Search',
   components: {
-    Video, Searchbar
+    Video, Searchbar, SingleLine
   },
   data: () => {
     return {
@@ -56,17 +58,6 @@ export default {
     async callSearch() {
       this.$store.dispatch('fetchLines')
     },
-    openVideo(id, timestamp) {
-      const payload = {
-        video_id: id,
-        timestamp: timestamp
-      }
-
-      this.$store.dispatch('activateVideo', payload)
-        .then(() => {
-          this.video = true
-        });
-    },
     onScroll(el) {
       this.video = false;
 
@@ -83,12 +74,11 @@ export default {
 
 <style scoped>
 .scroller {
-  height: 100vh;
+  height: calc(100vh - 6rem);
 }
 
 .text {
   font-family: 'IBM Plex Mono';
   font-size: 1rem;
-  line-height: 4rem;
 }
 </style>
