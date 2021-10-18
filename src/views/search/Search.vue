@@ -4,7 +4,11 @@
     <div class="results">
       <div v-if="loading" class="loading">Loading</div>
 
-      <Video v-if="video" />
+      <Video 
+        v-if="video"
+        :dragAreaWidth="dragAreaWidth"
+        :dragAreaFromTop="dragAreaFromTop"
+      />
 
       <DynamicScroller
         :items="lines"
@@ -42,7 +46,9 @@ export default {
   },
   data: () => {
     return {
-      video: false
+      video: false,
+      dragAreaWidth: 0,
+      dragAreaFromTop: 0
     }
   },
   props: {
@@ -77,6 +83,11 @@ export default {
         })
       }
     }
+  },
+  mounted(){
+    let dragArea = document.querySelector('.vue-recycle-scroller')
+    this.dragAreaWidth = dragArea.clientWidth
+    this.dragAreaFromTop = dragArea.getBoundingClientRect().top
   }
 }
 </script>
