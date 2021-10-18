@@ -4,10 +4,12 @@ import router from './router'
 import store from './store'
 
 import './styles/index.css'
+import '@/assets/global.scss'
 
 import VueFormulate from '@braid/vue-formulate'
 import VueVirtualScroller from 'vue-virtual-scroller'
 import 'vue-virtual-scroller/dist/vue-virtual-scroller.css'
+import VueYoutube from 'vue-youtube'
 
 import { domain, clientId, audience, scope } from "../auth_config.json";
 import { Auth0Plugin } from "./auth";
@@ -27,6 +29,7 @@ Vue.use(Auth0Plugin, {
     );
   }
 });
+Vue.use(VueYoutube)
 
 Vue.config.productionTip = false;
 

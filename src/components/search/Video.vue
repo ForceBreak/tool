@@ -4,16 +4,17 @@
     <div class = "b"></div>
     <div class = "c"></div>
     <div class = "d"></div>
-    <iframe 
-      class="yt" 
-      sandbox="allow-scripts allow-same-origin" 
-      frameborder="0" 
-      allowfullscreen="1" 
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-      width="100%" 
-      height="100%" 
-      :src="'https://www.youtube.com/embed/' + video_id + '?start=' + timestamp +'&cc_load_policy=1&amp;iv_load_policy=3&amp;controls=0&amp;playsinline=1&amp;rel=0&amp;modestbranding=1&amp;autoplay=1&amp;origin=https%3A%2F%2Fwe;enablejsapi=1&amp;widgetid=1'" id="widget2"
-      ></iframe>
+      <youtube 
+        ref="youtube"
+        class="yt" 
+        id="widget2"
+        width="100%" 
+        height="100%" 
+        frameborder="0" 
+        sandbox="allow-scripts allow-same-origin" 
+        :video-id="video_id" 
+        :player-vars="playerVars"
+      />
   </div>
 </template>
 
@@ -21,11 +22,27 @@
 export default {
   name: 'video',
   props: ['dragAreaWidth', 'dragAreaFromTop'],
+  data(){
+    return{
+      playerVars: {
+        cc_load_policy: 1,
+        iv_load_policy: 3,
+        controls: 0,
+        playsinline: 1,
+        rel: 0,
+        modestbranding: 1,
+        autoplay: 1,
+        widgetid: 1,
+        allowfullscreen: 1
+      }
+    }
+  },
   computed: {
     video_id () { return this.$store.state.search.pictureInPicture.activeVideo },
     timestamp () { return this.$store.state.search.pictureInPicture.timestamp }
   },
   mounted() {
+    console.log(this.$refs.youtube, 'this.$refs.youtube.player')
     let right;
     let bottom;
     let left;
@@ -219,11 +236,6 @@ export default {
   cursor: nwse-resize;
   left: 100%;
   top: 100%;
-}
-
-.yt {
-  pointer-events: none;
-  border-radius: 10px;
 }
 </style>
 
