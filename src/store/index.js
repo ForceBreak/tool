@@ -31,7 +31,7 @@ export default new Vuex.Store({
         show: false,
         activeVideo: "",
         timestamp: 0,
-        x: 100,
+        x: 101,
         y: 100
       },
       loading: false,
