@@ -2,16 +2,16 @@
   <div id="app" v-if="!$auth.loading">
     <div id="welcome" v-if="!$auth.isAuthenticated">
       <button @click="login">Log in</button>
-
-
     </div>
-    <div v-if="$auth.isAuthenticated">
+
+    <div v-if="$auth.isAuthenticated" class="flex">
       <Onboarding v-if="showOnboarding" />
-
-      <FeatureNav />
-
-
-      <router-view />
+      <div class="w-12 border-r h-screen"></div>
+      <div class="content w-full">
+        <FeatureNav />
+        <router-view />
+      </div>
+      <ProfileNav />
     </div>
   </div>
 </template>
@@ -19,11 +19,12 @@
 <script>
 import Onboarding from '@/components/Onboarding';
 import FeatureNav from '@/components/FeatureNav';
+import ProfileNav from '@/components/ProfileNav'
 
 export default {
   name: 'app',
   components: {
-    FeatureNav, Onboarding
+    FeatureNav, ProfileNav, Onboarding
   },
   computed: {
     showOnboarding () { return this.$store.state.user.meta.onboarding_completed }

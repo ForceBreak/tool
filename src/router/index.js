@@ -20,6 +20,31 @@ const routes = [
     path: '/discovery',
     name: 'Discovery',
     component: () => import(/* webpackChunkName: "about" */ '../views/Discovery.vue')
+  },
+  {
+    path: '/buckets',
+    name: 'Buckets',
+    component: () => import(/* webpackChunkName: "about" */ '../views/Buckets.vue')
+  },
+  {
+    path: '/buckets/channels/yt/:id',
+    name: 'Buckets-Channels',
+    component: () => import('../views/buckets/Channels.vue')
+  },
+  {
+    path: '/buckets/videos/yt/:id',
+    name: 'Buckets-Videos',
+    component: () => import('../views/buckets/Videos.vue')
+  },
+  {
+    path: '/track',
+    name: 'Track',
+    component: () => import(/* webpackChunkName: "about" */ '../views/Track.vue')
+  },
+  {
+    path: '/trends',
+    name: 'Trends',
+    component: () => import(/* webpackChunkName: "about" */ '../views/Trends.vue')
   }
 ]
 

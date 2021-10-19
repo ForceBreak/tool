@@ -21,15 +21,17 @@ export default new Vuex.Store({
         buckets: ['qanon'],
         channels: ['UCyXC1D6ByaREoqSIqcxIT0Q', 'UCyXC1D6ByaREoqSIqcxIT0Q'],
         channels_filter: false,
-        filters: ['show_online', 'show_removed', 'show_deleted_by_yt', 'show_deleted_by_owner'],
+        filters: ['show_online', 'show_deleted_by_yt', 'show_deleted_by_owner'],
+        sort: "",
         date: [242354235234, 5235423532],
         from: 0,
         size: 20
       },
       pictureInPicture: {
+        show: false,
         activeVideo: "",
         timestamp: 0,
-        x: 100,
+        x: 101,
         y: 100
       },
       loading: false,
@@ -52,6 +54,12 @@ export default new Vuex.Store({
     storeMetadata(state, payload) {
       state.user.meta = payload;
     },
+    setDummies() {
+      // setDummies(state) {
+        // for (var i = 0; i < state.search.searchState.size; i++) {
+      //   state.search.lines.push({id: i, line: "dummy"})
+      // }
+    },
     setLines(state, payload) {
       payload.hits.hits.forEach((line) => {
         state.search.lines.push(line._source);
@@ -60,6 +68,7 @@ export default new Vuex.Store({
     setVideo(state, payload) {
       state.search.pictureInPicture.activeVideo = payload.video_id;
       state.search.pictureInPicture.timestamp = payload.timestamp;
+      state.search.pictureInPicture.show = payload.show;
     },
     setLoading(state, payload) {
       state.search.loading = payload;
@@ -81,6 +90,7 @@ export default new Vuex.Store({
         })
     },
     async fetchLines(context, payload) {
+      context.commit('setDummies');
       if (payload.followup) {
         context.commit('loadMoreResults')
       }
