@@ -3,12 +3,10 @@
     <Searchbar />
     <div class="results">
       <div v-if="loading" class="loading">Loading</div>
-
-      <Video 
-        v-if="video"
-        :dragAreaWidth="dragAreaWidth"
-        :dragAreaFromTop="dragAreaFromTop"
-      />
+      
+      <div v-show="video" class="videoWrap" ref="videoWrap">
+        <Video v-if="video" :dragAreaWidth="dragAreaWidth"/>
+      </div>
 
       <DynamicScroller
         :items="lines"
@@ -71,6 +69,7 @@ export default {
       this.$store.dispatch('activateVideo', payload)
         .then(() => {
           this.video = true
+          this.$refs.videoWrap.style.zIndex = 1
         });
     },
     onScroll(el) {
@@ -82,12 +81,19 @@ export default {
           followup: true
         })
       }
+    },
+    disableVideoWrap(){
+      this.$refs.videoWrap.style.zIndex = 0
     }
   },
   mounted(){
     let dragArea = document.querySelector('.vue-recycle-scroller')
     this.dragAreaWidth = dragArea.clientWidth
-    this.dragAreaFromTop = dragArea.getBoundingClientRect().top
+
+    this.$refs.videoWrap.addEventListener('wheel', this.disableVideoWrap, false);
+  },
+  beforeDestroy(){
+    this.$refs.videoWrap.removeEventListener('wheel', this.disableVideoWrap, false);
   }
 }
 </script>

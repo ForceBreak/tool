@@ -10,6 +10,10 @@ import VueFormulate from '@braid/vue-formulate'
 import VueVirtualScroller from 'vue-virtual-scroller'
 import 'vue-virtual-scroller/dist/vue-virtual-scroller.css'
 import VueYoutube from 'vue-youtube'
+import VueDraggableResizable from 'vue-draggable-resizable'
+
+// optionally import default styles
+import 'vue-draggable-resizable/dist/VueDraggableResizable.css'
 
 import { domain, clientId, audience, scope } from "../auth_config.json";
 import { Auth0Plugin } from "./auth";
@@ -30,6 +34,8 @@ Vue.use(Auth0Plugin, {
   }
 });
 Vue.use(VueYoutube)
+
+Vue.component('vue-draggable-resizable', VueDraggableResizable)
 
 Vue.config.productionTip = false;
 
