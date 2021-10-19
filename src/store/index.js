@@ -36,6 +36,9 @@ export default new Vuex.Store({
       lines: []
     }
   },
+  getters:{
+    searchChannels: (state) => state.search.searchState.channels
+  },
   mutations: {
     loadMoreResults(state) {
       state.search.searchState.from = state.search.searchState.from + state.search.searchState.size;
@@ -60,7 +63,14 @@ export default new Vuex.Store({
     },
     setLoading(state, payload) {
       state.search.loading = payload;
-    }
+    },
+    setChannels(state, payload) {
+      if(state.search.searchState.channels.indexOf(payload) == -1) state.search.searchState.channels.push(payload)
+      else state.search.searchState.channels = state.search.searchState.channels.filter(elem => elem != payload)
+    },
+    removeSelectedChannels(state) {
+      state.search.searchState.channels = []
+    },
   },
   actions: {
     async authorizeAuth0(context) { // Put this in local storage
