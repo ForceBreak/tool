@@ -4,7 +4,7 @@
     <div class="results">
       <div v-if="loading" class="loading">Loading</div>
 
-      <Video v-if="video" />
+      <Video v-if="showVideo" />
 
       <DynamicScroller
         :items="lines"
@@ -21,7 +21,21 @@
             key-field="line_id"
           >
 
-          <SingleLine :id="item.video_id" :start="item.start" :linetext="item.line" />
+          <SingleLine 
+            v-if="item.line"
+            :id="item.video_id" 
+            :start="item.start" 
+            :linetext="item.line" 
+            :channel_name="item.channel_user"
+            :channel_id="item.channel_id"
+            :bucket="item.bucket"
+            :date="item.date"
+            :online="item.online"
+          />
+
+          <SingleLoad
+            v-if="!item.line"
+          />
           <!-- <div class="text" @click="openVideo(item.video_id, item.start)">{{ item.line }}</div> -->
           </DynamicScrollerItem>
         </template>
@@ -36,11 +50,12 @@
 import Video from '@/components/search/Video'
 import Searchbar from '@/components/search/Searchbar'
 import SingleLine from '@/components/search/SingleLine'
+import SingleLoad from '@/components/search/SingleLoad'
 
 export default {
   name: 'Search',
   components: {
-    Video, Searchbar, SingleLine
+    Video, Searchbar, SingleLine, SingleLoad
   },
   data: () => {
     return {
@@ -51,6 +66,7 @@ export default {
     items: Array,
   },
   computed: {
+    showVideo () { return this.$store.state.search.pictureInPicture.show },
     lines () { return this.$store.state.search.lines },
     loading () { return this.$store.state.search.loading }
   },
@@ -59,7 +75,11 @@ export default {
       this.$store.dispatch('fetchLines')
     },
     onScroll(el) {
-      this.video = false;
+      this.$store.dispatch('activateVideo', {
+        video_id: "",
+        timestamp: "",
+        show: false
+      })
 
       if ( el.path[0].offsetHeight + el.path[0].scrollTop >= el.path[0].scrollHeight ) {
         // measure amount of searches?

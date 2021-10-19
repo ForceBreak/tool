@@ -28,6 +28,7 @@ export default new Vuex.Store({
         size: 20
       },
       pictureInPicture: {
+        show: false,
         activeVideo: "",
         timestamp: 0,
         x: 100,
@@ -50,6 +51,12 @@ export default new Vuex.Store({
     storeMetadata(state, payload) {
       state.user.meta = payload;
     },
+    setDummies() {
+      // setDummies(state) {
+        // for (var i = 0; i < state.search.searchState.size; i++) {
+      //   state.search.lines.push({id: i, line: "dummy"})
+      // }
+    },
     setLines(state, payload) {
       payload.hits.hits.forEach((line) => {
         state.search.lines.push(line._source);
@@ -58,6 +65,7 @@ export default new Vuex.Store({
     setVideo(state, payload) {
       state.search.pictureInPicture.activeVideo = payload.video_id;
       state.search.pictureInPicture.timestamp = payload.timestamp;
+      state.search.pictureInPicture.show = payload.show;
     },
     setLoading(state, payload) {
       state.search.loading = payload;
@@ -72,6 +80,7 @@ export default new Vuex.Store({
         })
     },
     async fetchLines(context, payload) {
+      context.commit('setDummies');
       if (payload.followup) {
         context.commit('loadMoreResults')
       }

@@ -8,10 +8,11 @@
     <nav>
     <ul>
     <router-link to="/"><li class="leading-12 px-2">Dashboard</li></router-link>
+    <router-link to="/buckets"><li class="leading-12 px-2">Buckets</li></router-link>
     <router-link to="/discovery"><li class="leading-12 px-2">Discovery</li></router-link>
-    <li class="leading-12 px-2"><router-link to="/search">Search</router-link></li>
-    <li class="leading-12 px-2"><router-link to="/">Track</router-link></li>
-    <li class="leading-12 px-2"><router-link to="/">Trends</router-link></li>
+    <router-link to="/search"><li class="leading-12 px-2">Search</li></router-link>
+    <li class="leading-12 px-2"><router-link to="/track">Track</router-link></li>
+    <li class="leading-12 px-2"><router-link to="/trends">Trends</router-link></li>
     </ul>
     </nav>
     </header>
